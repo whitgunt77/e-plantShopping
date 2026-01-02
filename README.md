@@ -43,9 +43,10 @@
 
 ### Running the App
 Start the development server:
-    ```bash
+    ```
     npm start
     ```
+    
 This will open in your browser at `http://localhost:3000`.
 
 ### Deployment via GitHub Pages
@@ -77,4 +78,5 @@ MIT License
 ---
 
 **Repository Name**: e-plantShopping
+
 **Live Demo**: https://whitgunt77.github.io/e-plantShopping
