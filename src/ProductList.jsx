@@ -224,13 +224,20 @@ function ProductList({ onHomeClick }) {
         }
     ];
 
-    const handleAddToCart = (product) => {
-        dispatch(addItem(product));
+    const handleAddToCart = (plant, category) => {
+        dispatch(
+            addItem({
+                name: plant.name,
+                image: plant.image,
+                cost: plant.cost,
+                category: category
+            })
+        );
 
         setAddedToCart((prevState) => (
             {
                 ...prevState,
-                [product.name]: true,
+                [plant.name]: true,
             }
         ));
     };
@@ -298,11 +305,11 @@ function ProductList({ onHomeClick }) {
             </div>
             {!showCart ? (
                 <div className="product-grid">
-                    {plantsArray.map((category, index) => (
+                    {plantsArray.map((categoryGroup, index) => (
                         <div key={index}>
-                            <h1>{category.category}</h1>
+                            <h1>{categoryGroup.category}</h1>
                             <div className='product-list'>
-                                {category.plants.map((plant, plantIndex) => (
+                                {categoryGroup.plants.map((plant, plantIndex) => (
                                     <div className='product-card' key={plantIndex}>
                                         <img
                                             className='product-image'
@@ -314,7 +321,7 @@ function ProductList({ onHomeClick }) {
                                         <div className='product-cost'>{plant.cost}</div>
                                         <button
                                             className='product-button'
-                                            onClick={() => handleAddToCart(plant)}
+                                            onClick={() => handleAddToCart(plant, categoryGroup.category)}
                                             disabled={addedToCart[plant.name]}
                                         >
                                             {addedToCart[plant.name] ? "Added to Cart" : "Add to Cart"}
