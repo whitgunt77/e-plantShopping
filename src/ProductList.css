@@ -200,6 +200,10 @@ body {
 .product-button {
     background-color: #4CAF50; /* Green */
     border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 7px;
+    font-weight: bold;
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -209,15 +213,36 @@ body {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .product-button::after {
+    content: attr(data-original-text);
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .product-button:disabled::after {
+    opacity: 1;
   }
   
   .product-button:hover {
     background-color: #45a049;
   }
   
-  .product-button.added-to-cart {
-    background-color: grey; /* Grey when product is added */
+  .product-button:disabled {
+    background-color: #bbb7b7;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
   }
+
+  .product-button:hover:not(:disabled) {
+    background-color: #4caf50;
+    transform: translateY(-2px);
+  }
+
   @media (max-width: 1200px) {
     .product-card {
       flex: 1 1 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap on medium screens */
